@@ -42,7 +42,7 @@
         <table id="holdingsTable">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Name/Ticker</th>
                     <th>Quantity</th>
                     <th>Market Value</th>
                     <th>Market Price</th>
@@ -56,7 +56,8 @@
     <div class="right-side">
         <h2>Add Asset</h2>
         <form id="addAssetForm">
-            <input type="text" id="name" placeholder="Name" required><br>
+            <input type="text" id="name" placeholder="Company Name" required><br>
+            <input type="text" id="ticker" placeholder="Ticker Symbol" required><br>
             <input type="number" id="quantity" placeholder="Quantity" step="0.01" required><br>
             <input type="number" id="marketValue" placeholder="Market Value" step="0.01" required><br>
             <input type="number" id="marketPrice" placeholder="Market Price" step="0.01" required><br>

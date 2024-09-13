@@ -3,6 +3,7 @@ import type { ActorMethod } from '@dfinity/agent';
 import type { IDL } from '@dfinity/candid';
 
 export interface Asset {
+  'ticker' : string,
   'marketValue' : number,
   'name' : string,
   'performance' : number,
@@ -12,7 +13,7 @@ export interface Asset {
 }
 export interface _SERVICE {
   'addAsset' : ActorMethod<
-    [string, number, number, number, number, string],
+    [string, string, number, number, number, number, string],
     undefined
   >,
   'getAllAssets' : ActorMethod<[], Array<Asset>>,

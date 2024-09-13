@@ -6,10 +6,11 @@ type Asset =
    name: text;
    performance: float64;
    quantity: float64;
+   ticker: text;
  };
 service : {
-  addAsset: (text, float64, float64, float64, float64, text) -> ();
-  getAllAssets: () -> (vec Asset);
+  addAsset: (text, text, float64, float64, float64, float64, text) -> ();
+  getAllAssets: () -> (vec Asset) query;
   init: () -> ();
-  searchAssets: (text) -> (vec Asset);
+  searchAssets: (text) -> (vec Asset) query;
 }

@@ -1,5 +1,6 @@
 export const idlFactory = ({ IDL }) => {
   const Asset = IDL.Record({
+    'ticker' : IDL.Text,
     'marketValue' : IDL.Float64,
     'name' : IDL.Text,
     'performance' : IDL.Float64,
@@ -11,6 +12,7 @@ export const idlFactory = ({ IDL }) => {
     'addAsset' : IDL.Func(
         [
           IDL.Text,
+          IDL.Text,
           IDL.Float64,
           IDL.Float64,
           IDL.Float64,
@@ -20,9 +22,9 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
-    'getAllAssets' : IDL.Func([], [IDL.Vec(Asset)], []),
+    'getAllAssets' : IDL.Func([], [IDL.Vec(Asset)], ['query']),
     'init' : IDL.Func([], [], []),
-    'searchAssets' : IDL.Func([IDL.Text], [IDL.Vec(Asset)], []),
+    'searchAssets' : IDL.Func([IDL.Text], [IDL.Vec(Asset)], ['query']),
   });
 };
 export const init = ({ IDL }) => { return []; };

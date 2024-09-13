@@ -5,13 +5,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchInput = document.getElementById('searchInput');
     const addAssetForm = document.getElementById('addAssetForm');
 
-    // Function to render assets in the table
     const renderAssets = (assets) => {
         holdingsBody.innerHTML = '';
         assets.forEach(asset => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${asset.name}</td>
+                <td>${asset.name} (${asset.ticker})</td>
                 <td>${asset.quantity}</td>
                 <td>${asset.marketValue}</td>
                 <td>${asset.marketPrice}</td>
@@ -22,13 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     };
 
-    // Load all assets on page load
     const loadAssets = async () => {
         const assets = await backend.getAllAssets();
         renderAssets(assets);
     };
 
-    // Search assets
     searchInput.addEventListener('input', async () => {
         const query = searchInput.value.trim();
         if (query) {
@@ -39,21 +36,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Add new asset
     addAssetForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = document.getElementById('name').value;
+        const ticker = document.getElementById('ticker').value;
         const quantity = parseFloat(document.getElementById('quantity').value);
         const marketValue = parseFloat(document.getElementById('marketValue').value);
         const marketPrice = parseFloat(document.getElementById('marketPrice').value);
         const performance = parseFloat(document.getElementById('performance').value);
         const assetType = document.getElementById('assetType').value;
 
-        await backend.addAsset(name, quantity, marketValue, marketPrice, performance, assetType);
+        await backend.addAsset(name, ticker, quantity, marketValue, marketPrice, performance, assetType);
         addAssetForm.reset();
         loadAssets();
     });
 
-    // Initial load of assets
     loadAssets();
 });
